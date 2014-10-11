@@ -1,4 +1,4 @@
-function [ results ] = get_data ( type, max )
+function [ results ] = getData ( type, max )
 %Obtains the filepaths of the image files from each of the classes.
     no_max = nargin < 2;
     categories = { 'airplanes' 'cars' 'faces' 'motorbikes' };
