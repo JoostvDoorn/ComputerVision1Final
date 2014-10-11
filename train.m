@@ -14,7 +14,7 @@ c = 0;
 for category = categories
     disp(char(category));
     images = getfield(dataSet, char(category));
-    visualDescriptions = getVisualDescriptions(images(4:6,:), centers);
+    visualDescriptions = getVisualDescriptions(images(4:30,:), centers);
     classLabels = [ classLabels ; repmat( c, [size(visualDescriptions,1), 1] )];
     histograms = [ histograms ; visualDescriptions ];  
     c = c + 1;
@@ -24,6 +24,6 @@ c = 0;
 for category = categories
     disp(char(category));
     svm = svmtrain(double(classLabels == c), histograms);
-    setfield(SVMs, char(category), svm);
+    SVMs = setfield(SVMs, char(category), svm);
     c = c + 1;
 end
