@@ -1,4 +1,4 @@
-function [C, A] = buildVisualVoc(imageFiles, vocSize )
+function [C] = buildVisualVoc(imageFiles, vocSize )
     % imageFiles:  L x 1 matrix with L file paths for image files
     % vocSize:      vocabulary size for visual vocabulary
     % C:            m x vocSize matrix contianing the centroids
