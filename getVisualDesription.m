@@ -1,8 +1,17 @@
-function [h] = getVisualDesription(im, centers)
-% im:   image matrix
-% c:    centers of visual vocabulary (m x k matrix, with m descriptor
-%       features
-% h:    normalized histogram
-[k, d] = featureExtraction(im);
-[visualWords, h] = assignVisualWords(d, centers );
+function [histograms] = getVisualDesription(imageFiles, centers)
+    % imageFiles:   L x 1 vector containing paths to images
+    % c:            centers of visual vocabulary (m x k matrix, with m descriptor
+    %               features
+    % h:            normalized histogram
+
+    histograms = [];
+    
+    for i=1:size(imageFiles,1)
+        im = imread(imageFiles(i,:));
+        [~, d] = featureExtraction(im);
+        [~, h] = assignVisualWords(d, centers ); 
+        histograms = [histograms; h];
+    end
+
+
 end
