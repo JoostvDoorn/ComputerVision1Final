@@ -3,9 +3,9 @@ SVMs = struct();
 classLabels = [];
 histograms = [];
 
-dataSet = getData(categories, 'train', 30);
+dataSet = getData(categories, 'train', 60);
 vocSize = 400;
-visualVocabImagePaths = getSubsetFromData(dataSet, 1:3);
+visualVocabImagePaths = getSubsetFromData(dataSet, 1:20);
 disp('Build visual vocabulary');
 centers = buildVisualVoc(visualVocabImagePaths, vocSize);
 
@@ -14,7 +14,7 @@ c = 0;
 for category = categories
     disp(char(category));
     images = getfield(dataSet, char(category));
-    visualDescriptions = getVisualDescriptions(images(4:30,:), centers);
+    visualDescriptions = getVisualDescriptions(images(21:60,:), centers);
     classLabels = [ classLabels ; repmat( c, [size(visualDescriptions,1), 1] )];
     histograms = [ histograms ; visualDescriptions ];  
     c = c + 1;
