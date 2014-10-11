@@ -20,7 +20,7 @@ function [ results ] = getData ( type, max )
         end
         % Loop over all the data file names and include the appropriate
         % files
-        while (no_max || i<max) && k<size(listing,1)
+        while (no_max || i<=max) && k<size(listing,1)
             % Filter out filenames we want to ignore
             if (sum(strcmp(strtrim(listing(k,:)), filter_files)) == 0)
                 filepath = strcat(directory, listing(k,:));
@@ -37,11 +37,11 @@ function [ results ] = getData ( type, max )
             k = k + 1;
         end
         % Gives a warning if we do not get max amount of images
-        if no_max == 0 && i<max
+        if no_max == 0 && i<=max
             warning('Could not get %i images of class %s. Only %i images found.',max,char(category),i);
         end
         % Remove the unused entries
-        files = files(1:i, :);
+        files = files(1:(i-1), :);
         % Store the filenames in the struct
         results = setfield(results, char(category), files);
     end
