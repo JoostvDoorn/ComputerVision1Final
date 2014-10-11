@@ -1,4 +1,4 @@
-function [ keypoints, descriptors ] = feature_extraction( input )
+function [ keypoints, descriptors ] = featureExtraction( input )
     % f: keypoints, d: descriptor
     keypoints = vl_sift(single(rgb2gray(input)));
     [x, dR] = vl_sift(single(input(:,:,1)), 'frames', keypoints);
