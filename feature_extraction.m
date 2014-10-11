@@ -10,4 +10,3 @@ function [ keypoints, descriptors ] = feature_extraction( input )
     hold off;
     descriptors = [ dR; dG; dB ];
 end
-
