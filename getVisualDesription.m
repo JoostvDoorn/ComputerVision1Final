@@ -1,4 +1,4 @@
-function [histograms] = getVisualDesription(imageFiles, centers)
+function [histograms] = getVisualDescriptions(imageFiles, centers)
     % imageFiles:   L x 1 vector containing paths to images
     % c:            centers of visual vocabulary (m x k matrix, with m descriptor
     %               features
