@@ -19,7 +19,9 @@ c = 0;
 for category = categories
     disp(char(category));
     svm = getfield(SVMs, char(category));
-    Predicted = svmpredict(double(classLabelsEval == c), histogramsEval, svm);
+    labelsEval = ones(size(classLabelsEval));
+    labelsEval(classLabelsEval ~= c) = -1;
+    Predicted = svmpredict(labelsEval, histogramsEval, svm);
     PredictedLabels = setfield(PredictedLabels, char(category), Predicted);
     c = c + 1;
 end
