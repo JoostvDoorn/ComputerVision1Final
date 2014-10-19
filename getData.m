@@ -1,7 +1,7 @@
 function [ results ] = getData ( categories, type, max )
 %Obtains the filepaths of the image files from each of the classes.
     no_max = nargin < 3 || strcmp(max, 'max');
-    filter_files = { '.', '..', 'Thumbs.db' };
+    filter_files = { '.', '..', 'Thumbs.db', '' };
     results = struct();
     for category = categories
         % The directory where the image files of the category are stored
@@ -13,7 +13,7 @@ function [ results ] = getData ( categories, type, max )
         strl = size(directory,2) + size(listing,2);
         % Create an array for the filenames of the listings
         if no_max
-            files = repmat( ' ', [1, strl] );
+            files = repmat( ' ', [0, strl] );
         else
             files = repmat( ' ', [max, strl] );
         end
