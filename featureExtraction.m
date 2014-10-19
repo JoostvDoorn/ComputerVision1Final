@@ -15,5 +15,5 @@ function [ keypoints, descriptors ] = featureExtraction( input )
     %hold on;
     %plot(keypoints(1,:), keypoints(2,:), 'r*');
     %hold off;
-    descriptors = [ dR; dG; dB ];
+    %descriptors = [ dR; dG; dB ];
 end
