@@ -19,7 +19,7 @@ function [ results ] = getData ( categories, type, max )
         end
         % Loop over all the data file names and include the appropriate
         % files
-        while (no_max || i<=max) && k<size(listing,1)
+        while (no_max || i<=max) && k<=size(listing,1)
             % Filter out filenames we want to ignore
             if (sum(strcmp(strtrim(listing(k,:)), filter_files)) == 0)
                 filepath = strcat(directory, listing(k,:));
