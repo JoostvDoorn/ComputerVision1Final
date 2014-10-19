@@ -1,6 +1,6 @@
 function [ results ] = getData ( categories, type, max )
 %Obtains the filepaths of the image files from each of the classes.
-    no_max = nargin < 3;
+    no_max = nargin < 3 || strcmp(max, 'max');
     filter_files = { '.', '..', 'Thumbs.db' };
     results = struct();
     for category = categories
@@ -19,7 +19,7 @@ function [ results ] = getData ( categories, type, max )
         end
         % Loop over all the data file names and include the appropriate
         % files
-        while (no_max || i<=max) && k<size(listing,1)
+        while (no_max || i<=max) && k<=size(listing,1)
             % Filter out filenames we want to ignore
             if (sum(strcmp(strtrim(listing(k,:)), filter_files)) == 0)
                 filepath = strcat(directory, listing(k,:));

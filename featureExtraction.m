@@ -9,5 +9,4 @@ function [descriptors ] = featureExtraction( input, fE )
         
         otherwise
             error('featureExtraction: invalid option given');
-
 end
