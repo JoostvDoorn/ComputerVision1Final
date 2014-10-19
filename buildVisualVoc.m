@@ -1,14 +1,15 @@
-function [C] = buildVisualVoc(imageFiles, vocSize )
+function [C] = buildVisualVoc(imageFiles, vocSize, fE)
     % imageFiles:  L x 1 matrix with L file paths for image files
     % vocSize:      vocabulary size for visual vocabulary
     % C:            m x vocSize matrix contianing the centroids
+    % fE:           feature extraction options
     
     descriptors = [];
     
     % for each image, get the descriptors and concatenate them.
     for i=1:size(imageFiles,1)
         im = imread(imageFiles(i,:));
-        [ ~, imDesc ] = featureExtraction(im);
+        imDesc = featureExtraction(im, fE);
         descriptors = [descriptors imDesc];
     end
     
