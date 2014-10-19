@@ -15,6 +15,8 @@ for category = categories
     histogramsEval = [ histogramsEval ; visualDescriptions ];  
     c = c + 1;
 end
+predictedRanking = [];
+rankingScore = [];
 c = 0;
 for category = categories
     disp(char(category));
@@ -28,6 +30,11 @@ for category = categories
     [Predicted, accuracy, probEstimates] = svmpredict(labelsEval, histogramsEval, svm);
     % Put the probability estimation in a matrix
     PredictedEstimates = [PredictedEstimates probEstimates];
+    % Get the ranking
+    ranking = sort([probEstimates double(Predicted == 1) double(labelsEval == 1)], 'descend');
+    rankingScore = [ rankingScore 1/sum(ranking(:,3))*sum(ranking(:,3).*cumsum(ranking(:,2))./(1:size(ranking,1))') ];
+    predictedRanking = [ predictedRanking ranking(:,1) ];
+    %PredictedEstimatesStruct = setfield(PredictedEstimates, char(category), Predicted);
     c = c + 1;
 end
 % Calculate the class indices for the predictions giving the class with the maximum
@@ -40,3 +47,4 @@ accuracy = mean( predictedClassLabels == classLabelsEval );
 % Print the result
 disp('Combined accuracy: ');
 disp(accuracy);
+disp(rankingScore);
