@@ -15,7 +15,7 @@ c = 0;
 for category = categories
     disp(char(category));
     images = getfield(trainImages, char(category));
-    visualDescriptions = getVisualDescriptions(images, centers, fE);
+    visualDescriptions = getVisualDescriptions(images, centers, fE, denseSampling);
     classLabels = [ classLabels ; repmat( c, [size(visualDescriptions,1), 1] )];
     histograms = [ histograms ; visualDescriptions ];  
     c = c + 1;
