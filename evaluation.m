@@ -6,11 +6,13 @@ PredictedEstimates = [];
 
 disp('Get visual descriptions');
 c = 0;
+fExtraction = 'grayscaleSift';
+denseSampling = false;
 % Build the visual vocabulary for the test data
 for category = categories
     disp(char(category));
     images = getfield(testData, char(category));
-    visualDescriptions = getVisualDescriptions(images, centers);
+    visualDescriptions = getVisualDescriptions(images, centers, fExtraction, denseSampling);
     classLabelsEval = [ classLabelsEval ; repmat( c, [size(visualDescriptions,1), 1] )];
     histogramsEval = [ histogramsEval ; visualDescriptions ];  
     c = c + 1;

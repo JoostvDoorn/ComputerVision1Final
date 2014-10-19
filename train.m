@@ -1,4 +1,4 @@
-function [SVMs, centers] = train(categories, vocSize, samplesSize, vocSamples, svmOptions, fE)
+function [SVMs, centers] = train(categories, vocSize, samplesSize, vocSamples, svmOptions, fE, denseSampling)
 %categories = { 'airplanes' 'cars' 'faces' 'motorbikes' };
 SVMs = struct();
 classLabels = [];
@@ -8,7 +8,7 @@ dataSet = getData(categories, 'train', samplesSize);
 %vocSize = 400;
 [visualVocabImagePaths, trainImages] = splitDataset(dataSet, vocSamples);
 disp('Build visual vocabulary');
-centers = buildVisualVoc(visualVocabImagePaths, vocSize, fE);
+centers = buildVisualVoc(visualVocabImagePaths, vocSize, fE, denseSampling);
 
 disp('Get visual descriptions');
 c = 0;
