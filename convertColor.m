@@ -9,9 +9,8 @@ function [ output ] = convertColor( input, code )
             output = input ./ sumChannels;
             % For completely black (all zero) pixels, the division above
             % will return NaN. The outputs for these pixels are therefore
-            % set to 1/3.
-            output(isnan(output)) = 1.0 / 3;
-            output = output * 255;
+            % set to 255/3.
+            output(isnan(output)) = 255.0 / 3;
             
         case 'RGB2Opponent'
             % Note: The output can have negative values in this case
