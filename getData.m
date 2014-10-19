@@ -1,6 +1,6 @@
 function [ results ] = getData ( categories, type, max )
 %Obtains the filepaths of the image files from each of the classes.
-    no_max = nargin < 3;
+    no_max = nargin < 3 || strcmp(max, 'max');
     filter_files = { '.', '..', 'Thumbs.db' };
     results = struct();
     for category = categories
