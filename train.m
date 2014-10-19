@@ -1,9 +1,10 @@
-function [SVMs, centers] = train(categories, vocSize, samplesSize, vocSamples, svmOptions, fE, denseSampling)
+function [SVMs, centers, histograms, classLabels] = train(categories, vocSize, samplesSize, vocSamples, svmOptions, fE, denseSampling)
 %categories = { 'airplanes' 'cars' 'faces' 'motorbikes' };
 SVMs = struct();
 classLabels = [];
 histograms = [];
-
+% Get time at start
+startTime = cputime;
 dataSet = getData(categories, 'train', samplesSize);
 %vocSize = 400;
 [visualVocabImagePaths, trainImages] = splitDataset(dataSet, vocSamples);
@@ -30,4 +31,6 @@ for category = categories
     SVMs = setfield(SVMs, char(category), svm);
     c = c + 1;
 end
+% Elapsed time
+endTime = cputime-startTime
 end
