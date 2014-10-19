@@ -2,8 +2,8 @@
 
 categories = { 'airplanes' 'cars' 'faces' 'motorbikes' };
 vocSize = 400;
-trainingSize = 10;
-visualVocBuildingSize = 2;
+trainingSize = 'max';
+visualVocBuildingSize = 50;
 svmOptions = '-t 0';
 fExtraction = 'grayscaleSift';
 denseSampling = false;
