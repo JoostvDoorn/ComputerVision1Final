@@ -32,7 +32,9 @@ for category = categories
     PredictedEstimates = [PredictedEstimates probEstimates];
     % Get the ranking
     ranking = sort([probEstimates double(Predicted == 1) double(labelsEval == 1)], 'descend');
-    rankingScore = [ rankingScore 1/sum(ranking(:,3))*sum(ranking(:,3).*cumsum(ranking(:,2))./(1:size(ranking,1))') ];
+    % Calculate mean average precision
+    meanAveragePrecision = 1/sum(ranking(:,3))*sum(ranking(:,3).*cumsum(ranking(:,2))./(1:size(ranking,1))');
+    rankingScore = [ rankingScore meanAveragePrecision ];
     predictedRanking = [ predictedRanking ranking(:,1) ];
     %PredictedEstimatesStruct = setfield(PredictedEstimates, char(category), Predicted);
     c = c + 1;
