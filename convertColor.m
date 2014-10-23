@@ -6,7 +6,7 @@ function [ output ] = convertColor( input, code )
         case 'RGB2rgb'
             sumChannels = sum(temp, 3);
             sumChannels = repmat(sumChannels, [1 1 3]);
-            output = input ./ sumChannels;
+            output = double(input) ./ sumChannels;
             % For completely black (all zero) pixels, the division above
             % will return NaN. The outputs for these pixels are therefore
             % set to 255/3.
