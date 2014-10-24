@@ -1,6 +1,6 @@
 % This script trains the SVMs
 vocSizes = [ 400, 800, 1600, 2000, 4000 ];
-extractions = [ 'colorSift', 'opponentSift', 'hsvSift' ];
+extractions = { 'colorSift', 'opponentSift', 'hsvSift' };
 for extraction=extractions,
     for voc=vocSizes,
        categories = { 'airplanes' 'cars' 'faces' 'motorbikes' };
@@ -8,7 +8,7 @@ for extraction=extractions,
         trainingSize = 'max';
         visualVocBuildingSize = 250;
         svmOptions = '-t 0';
-        fExtraction = extraction;
+        fExtraction = char(extraction);
         denseSampling = false;
         folderPath = strcat('results/raw/voc',num2str(vocSize),'N',num2str(trainingSize),'M',num2str(visualVocBuildingSize),'_',fExtraction,'_dense',num2str(denseSampling));
         skipExisting = true;
