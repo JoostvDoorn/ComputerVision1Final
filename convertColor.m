@@ -4,13 +4,17 @@ function [ output ] = convertColor( input, code )
     temp = double(input);
     switch code
         case 'RGB2rgb'
-            sumChannels = sum(temp, 3);
-            sumChannels = repmat(sumChannels, [1 1 3]);
-            output = input ./ sumChannels;
-            % For completely black (all zero) pixels, the division above
-            % will return NaN. The outputs for these pixels are therefore
-            % set to 255/3.
-            output(isnan(output)) = 255.0 / 3;
+            if(ndims(input) < 3)
+                output = zeros(size(input, 1), size(input, 2)) + 255.0 / 3;
+            else
+                sumChannels = sum(temp, 3);
+                sumChannels = repmat(sumChannels, [1 1 3]);
+                output = temp ./ sumChannels * 255.0;
+                % For completely black (all zero) pixels, the division above
+                % will return NaN. The outputs for these pixels are therefore
+                % set to 255/3.
+                output(isnan(output)) = 255.0 / 3;
+            end
             
         case 'RGB2Opponent'
             % Note: The output can have negative values in this case
