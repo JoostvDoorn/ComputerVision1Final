@@ -9,9 +9,10 @@ function [descriptors ] = colorSift( inputImage, originalImage, denseSampling )
     end
     
     if(denseSampling)
-        [x, dR] = vl_dsift(single(inputImage(:,:,1)));
-        [x, dG] = vl_dsift(single(inputImage(:,:,2)));
-        [x, dB] = vl_dsift(single(inputImage(:,:,3)));
+        binSize = 32; % The size of each bin in dense sift
+        [x, dR] = vl_dsift(single(inputImage(:,:,1)), 'size', binSize);
+        [x, dG] = vl_dsift(single(inputImage(:,:,2)), 'size', binSize);
+        [x, dB] = vl_dsift(single(inputImage(:,:,3)), 'size', binSize);
     else
         if(ndims(originalImage) == 3)
             originalImage = rgb2gray(originalImage);
