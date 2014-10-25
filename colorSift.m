@@ -13,7 +13,7 @@ function [descriptors ] = colorSift( inputImage, originalImage, denseSampling )
         [x, dG] = vl_dsift(single(inputImage(:,:,2)));
         [x, dB] = vl_dsift(single(inputImage(:,:,3)));
     else
-        if(ndims(originalImage == 3))
+        if(ndims(originalImage) == 3)
             originalImage = rgb2gray(originalImage);
         end
         [keypoints, ~] = vl_sift(single(originalImage));
