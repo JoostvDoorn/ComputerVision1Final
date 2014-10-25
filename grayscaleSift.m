@@ -5,7 +5,7 @@ function [descriptors ] = grayscaleSift( input, denseSampling )
     end
     
     if(denseSampling)
-        [~ ,descriptors] = vl_dsift(single(input), 'size', 8);
+        [~ ,descriptors] = vl_dsift(single(input), 'step', 6);
     else
         [~ ,descriptors] = vl_sift(single(input));
     end
