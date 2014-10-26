@@ -1,4 +1,4 @@
-function [SVMs] = trainsvm(histograms, classLabels, categories)
+function [SVMs] = trainsvm(histograms, classLabels, categories, svmOptions)
 SVMs = struct();
 % Get time at start
 startTime = cputime;
