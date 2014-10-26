@@ -31,7 +31,7 @@ for extraction=extractions,
             if(saveHistograms)
                 save(strcat(folderPath,'/histograms'),'histograms');
             end
-            [SVMs] = trainsvm(histograms, classLabels, categories);
+            [SVMs] = trainsvm(histograms, classLabels, categories, svmOptions);
             % to save them:
             save(strcat(folderPath,'/SVMs'),'SVMs');
         end
