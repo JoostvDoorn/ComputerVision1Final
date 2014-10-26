@@ -1,4 +1,4 @@
-function [centers, histograms, classLabels] = train(categories, vocSize, samplesSize, vocSamples, svmOptions, fE, denseSampling)
+function [centers, histograms, classLabels] = train(categories, vocSize, samplesSize, vocSamples, fE, denseSampling)
 classLabels = [];
 histograms = [];
 % Get time at start
