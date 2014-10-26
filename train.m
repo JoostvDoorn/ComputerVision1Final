@@ -1,6 +1,4 @@
-function [SVMs, centers, histograms, classLabels] = train(categories, vocSize, samplesSize, vocSamples, svmOptions, fE, denseSampling)
-%categories = { 'airplanes' 'cars' 'faces' 'motorbikes' };
-SVMs = struct();
+function [centers, histograms, classLabels] = train(categories, vocSize, samplesSize, vocSamples, svmOptions, fE, denseSampling)
 classLabels = [];
 histograms = [];
 % Get time at start
@@ -19,16 +17,6 @@ for category = categories
     visualDescriptions = getVisualDescriptions(images, centers, fE, denseSampling);
     classLabels = [ classLabels ; repmat( c, [size(visualDescriptions,1), 1] )];
     histograms = [ histograms ; visualDescriptions ];  
-    c = c + 1;
-end
-disp('Train SVMs');
-c = 0;
-for category = categories
-    disp(char(category));
-    labels = ones(size(classLabels));
-    labels(classLabels ~= c) = -1;
-    svm = svmtrain(labels, histograms, svmOptions);
-    SVMs = setfield(SVMs, char(category), svm);
     c = c + 1;
 end
 % Elapsed time
