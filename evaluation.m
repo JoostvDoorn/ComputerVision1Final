@@ -43,7 +43,7 @@ for category = categories
     labelsEval(classLabelsEval ~= c) = -1;
     % Use the SVM to classify each of the images and get the probability
     % estimation
-    [Predicted, accuracy, probEstimates] = svmpredict(labelsEval, histogramsEval, svm);
+    [Predicted, accuracy, probEstimates] = svmpredict(labelsEval, histogramsEval, svm, '-b 1');
     % Put the probability estimation in a matrix
     PredictedEstimates = [PredictedEstimates probEstimates];
     % Get the ranking
