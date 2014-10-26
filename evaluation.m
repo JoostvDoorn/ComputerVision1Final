@@ -3,19 +3,33 @@ testData = getData(categories, 'test', 4);
 histogramsEval = [];
 classLabelsEval = [];
 PredictedEstimates = [];
-
-disp('Get visual descriptions');
 c = 0;
 fExtraction = 'grayscaleSift';
 denseSampling = false;
-% Build the visual vocabulary for the test data
-for category = categories
-    disp(char(category));
-    images = getfield(testData, char(category));
-    visualDescriptions = getVisualDescriptions(images, centers, fExtraction, denseSampling);
-    classLabelsEval = [ classLabelsEval ; repmat( c, [size(visualDescriptions,1), 1] )];
-    histogramsEval = [ histogramsEval ; visualDescriptions ];  
-    c = c + 1;
+vocSize = 400;
+trainingSize = 'max';
+visualVocBuildingSize = 250;
+folderPath = strcat('results/raw/voc',num2str(vocSize),'N',num2str(trainingSize),'M',num2str(visualVocBuildingSize),'_',fExtraction,'_dense',num2str(denseSampling),'/eval/);
+skipExisting = true;
+if(isdir(folderPath) && skipExisting)
+    warning('We opted for skipping this visual description set as the folder already exists');
+    load(strcat(folderPath,'/histogramsEval'),'histogramsEval');
+    load(strcat(folderPath,'/classLabelsEval'),'classLabelsEval');
+else
+    disp('Get visual descriptions');
+    % Build the visual vocabulary for the test data
+    for category = categories
+        disp(char(category));
+        images = getfield(testData, char(category));
+        visualDescriptions = getVisualDescriptions(images, centers, fExtraction, denseSampling);
+        classLabelsEval = [ classLabelsEval ; repmat( c, [size(visualDescriptions,1), 1] )];
+        histogramsEval = [ histogramsEval ; visualDescriptions ];  
+        c = c + 1;
+    end
+    % to save them:
+    [s, mess, messid] = mkdir(folderPath);
+    save(strcat(folderPath,'/histogramsEval'),'histogramsEval');
+    save(strcat(folderPath,'/classLabelsEval'),'classLabelsEval');
 end
 predictedRanking = [];
 rankingScore = [];
