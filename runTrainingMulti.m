@@ -21,7 +21,7 @@ for extraction=extractions,
             load(strcat(folderPath,'/classLabels'),'classLabels');
             load(strcat(folderPath,'/histograms'),'histograms');
         else
-            [centers, histograms, classLabels] = train(categories, vocSize, trainingSize, visualVocBuildingSize, svmOptions, fExtraction, denseSampling);
+            [centers, histograms, classLabels] = train(categories, vocSize, trainingSize, visualVocBuildingSize, fExtraction, denseSampling);
             % to save them:
             [s, mess, messid] = mkdir(folderPath);
             save(strcat(folderPath,'/centers'),'centers');
@@ -31,7 +31,7 @@ for extraction=extractions,
             if(saveHistograms)
                 save(strcat(folderPath,'/histograms'),'histograms');
             end
-            [SVMs, centers] = train(categories, vocSize, trainingSize, visualVocBuildingSize, svmOptions, fExtraction, denseSampling);
+            [SVMs] = trainsvm(histograms, classLabels, categories);
             % to save them:
             save(strcat(folderPath,'/SVMs'),'SVMs');
         end
