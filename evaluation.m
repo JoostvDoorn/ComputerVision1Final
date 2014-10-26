@@ -9,7 +9,7 @@ denseSampling = false;
 vocSize = 400;
 trainingSize = 'max';
 visualVocBuildingSize = 250;
-folderPath = strcat('results/raw/voc',num2str(vocSize),'N',num2str(trainingSize),'M',num2str(visualVocBuildingSize),'_',fExtraction,'_dense',num2str(denseSampling),'/eval/);
+folderPath = strcat('results/raw/voc',num2str(vocSize),'N',num2str(trainingSize),'M',num2str(visualVocBuildingSize),'_',fExtraction,'_dense',num2str(denseSampling),'/eval/');
 skipExisting = true;
 if(isdir(folderPath) && skipExisting)
     warning('We opted for skipping this visual description set as the folder already exists');
