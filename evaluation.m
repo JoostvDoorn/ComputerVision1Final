@@ -10,13 +10,14 @@ vocSize = 400;
 trainingSize = 'max';
 visualVocBuildingSize = 250;
 folderPath = strcat('results/raw/voc',num2str(vocSize),'N',num2str(trainingSize),'M',num2str(visualVocBuildingSize),'_',fExtraction,'_dense',num2str(denseSampling));
+evalPath = strcat(folderPath,'/eval');
 skipExisting = true;
 averagePrecision = [];
-if(isdir(folderPath) && skipExisting)
+if(isdir(evalPath) && skipExisting)
     warning('We opted for skipping this visual description set as the folder already exists');
     load(strcat(folderPath,'/SVMs'),'SVMs');
-    load(strcat(folderPath,'/eval/histogramsEval'),'histogramsEval');
-    load(strcat(folderPath,'/eval/classLabelsEval'),'classLabelsEval');
+    load(strcat(evalPath,'/histogramsEval'),'histogramsEval');
+    load(strcat(evalPath,'/classLabelsEval'),'classLabelsEval');
 else
     disp('Get visual descriptions');
     % Build the visual vocabulary for the test data
