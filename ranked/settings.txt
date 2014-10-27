@@ -1,0 +1,7 @@
+- Images per class used for building codebook: 250
+- Dense Sampling: No
+- Codebook size: 400
+- Feature: OpponentSIFT
+- SVM Kernel: Radial Basis Function
+
+The rank is in descending order. Images with higher confidence are at the top, and those with low confidence are at the bottom.
