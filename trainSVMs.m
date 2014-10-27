@@ -1,7 +1,7 @@
 % This script trains SVMs for the given parameters below.
 % It will look for the histograms and if they exist for the given parameter
 % combinations, it will train the SVMs and store them.
-% Run runTrainingMutli.m with the specific parameters first to train
+% Run runTrainingMulti.m with the specific parameters first to train
 % histograms.
 
 % training parameters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
