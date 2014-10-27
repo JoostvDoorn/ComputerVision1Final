@@ -7,5 +7,5 @@ Single training files are designed to run after eachother for one specific setti
 Batch training files automatically train multiple models with the specified settings.
 * runTrainingMulti.m - Used to build the visual vocabulary and train the SVMs
 * trainSVMs.m - Used to automically retrain the SVMs for different settings, uses the histograms and classLabels in the results/ folder.
-
+* runEvaluationMulti.m - Used to automatically evaluate all the trained SVMs using the test set. Will output a LaTeX compatible table format in results/table0.txt (linear kernel), results/table1.txt (polynomial kernel) and results/table2.txt (RBF kernel).
 
