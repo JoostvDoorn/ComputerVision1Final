@@ -21,7 +21,7 @@ for denseSampling=denseSettings
                     svmOptions = strcat('-t ',num2str(kernel),' -w1 3 -b 1');
                     [SVMs] = trainsvm(histograms, classLabels, categories, svmOptions);
                     % to save them:
-                    save(strcat(folderPath,'/SVMs'),'SVMs');
+                    save(strcat(folderPath,'/SVMs',num2str(kernel)),'SVMs');
                 end
             else
                 warning('Data not yet trained');
