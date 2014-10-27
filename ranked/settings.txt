@@ -2,6 +2,6 @@
 - Dense Sampling: No
 - Codebook size: 400
 - Feature: OpponentSIFT
-- SVM Kernel: Radial Basis Function
+- SVM Kernel: Radial Basis Function (default libsvm gamma value)
 
 The rank is in descending order. Images with higher confidence are at the top, and those with low confidence are at the bottom.
