@@ -1,4 +1,5 @@
 function [] = addToResultTable( vocSize, fExtraction, denseSampling, map, kernel )
+% Function for our own use to output evaluation data in tabular form.
 % prints a line to the table results file with the settings and mean
 % average precision
 

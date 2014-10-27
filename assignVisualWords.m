@@ -16,7 +16,6 @@ function [visualWords, h] = assignVisualWords(descriptors, centers )
     end
 
     % create histogram, normalized so that max is 1
-    %h = hist(visualWords, size(centers,2)) ./ size(descriptors,2);
     h = hist(visualWords, size(centers,2));
     h = h ./ max(h);
          

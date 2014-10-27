@@ -1,4 +1,6 @@
 function [descriptors ] = featureExtraction( input, fE, denseSampling )
+    % Returns the descriptors of an image based on the parameters given
+    % (type of SIFT descriptor and dense vs. interest point sampling)
     original = input;
     switch fE
         case 'grayscaleSift'
