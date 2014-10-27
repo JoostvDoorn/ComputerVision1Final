@@ -1,11 +1,16 @@
 function [ output ] = convertColor( input, code )
     % Convert between RGB and other color channels
+    % input:    the input image
+    % code:     the colorspace used
+    % Returns:
+    % output:   image in the new color space
     
     temp = double(input);
     if(ndims(temp) < 3)
         temp = repmat(temp, [1 1 3]);
     end
     
+    % Convert the color to the correct colorspace
     switch code
         case 'RGB2rgb'
             sumChannels = sum(temp, 3);

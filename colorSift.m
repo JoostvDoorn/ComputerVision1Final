@@ -1,6 +1,12 @@
 function [descriptors ] = colorSift( inputImage, originalImage, denseSampling )
-    % fE: feature extraction options
-    % f: keypoints, d: descriptor
+    % Applies color sift on the input image
+    % inputImage: the input image used for feature extraction
+    % originalImage: the original image used for keypoints
+    % denseSampling: dense sampling option
+    % Returns:
+    % descriptors: The descriptors of the image
+    
+    % Replicate grayscale images over all channels
     if(ndims(inputImage) < 3)
         temp = inputImage;
         inputImage(:,:,1) = temp;
@@ -14,14 +20,17 @@ function [descriptors ] = colorSift( inputImage, originalImage, denseSampling )
         [x, dG] = vl_dsift(single(inputImage(:,:,2)), 'step', stepSize);
         [x, dB] = vl_dsift(single(inputImage(:,:,3)), 'step', stepSize);
     else
+        % Get the keypoints on the grayscale image and applies sift on the
+        % color channel afterwards
         if(ndims(originalImage) == 3)
             originalImage = rgb2gray(originalImage);
         end
+        % Apply sift on each of the channels
         [keypoints, ~] = vl_sift(single(originalImage));
-        [x, dR] = vl_sift(single(inputImage(:,:,1)), 'frames', keypoints);
-        [x, dG] = vl_sift(single(inputImage(:,:,2)), 'frames', keypoints);
-        [x, dB] = vl_sift(single(inputImage(:,:,3)), 'frames', keypoints);
+        [~, dR] = vl_sift(single(inputImage(:,:,1)), 'frames', keypoints);
+        [~, dG] = vl_sift(single(inputImage(:,:,2)), 'frames', keypoints);
+        [~, dB] = vl_sift(single(inputImage(:,:,3)), 'frames', keypoints);
     end
-
+    % The returned descriptors
     descriptors = [ dR; dG; dB ];
 end
