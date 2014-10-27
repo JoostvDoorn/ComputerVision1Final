@@ -4,7 +4,7 @@ By Roger Wechsler, Tran Cong Nguyen and Joost van Doorn
 
 The functions expect the data to be in the data/ directory. All batch functions are created to automatically store results in the results/ folder, and to store the intermediate results.
 
-The following two external libraries should be installed andloaded to Matlab's namespace initially:
+The following two external libraries should be installed and loaded to Matlab's namespace initially:
 - libsvm (http://www.csie.ntu.edu.tw/~cjlin/libsvm/#matlab)
 - VLFeat (http://www.vlfeat.org/install-matlab.html)
 
