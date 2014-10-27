@@ -1,5 +1,7 @@
 categories = { 'airplanes' 'cars' 'faces' 'motorbikes' };
 testData = getData(categories, 'test', 'max');
+testDataList = getSubsetFromData(testData, ':');
+
 histogramsEval = [];
 classLabelsEval = [];
 PredictedEstimates = [];
@@ -11,11 +13,13 @@ trainingSize = 'max';
 visualVocBuildingSize = 250;
 folderPath = strcat('results/raw/voc',num2str(vocSize),'N',num2str(trainingSize),'M',num2str(visualVocBuildingSize),'_',fExtraction,'_dense',num2str(denseSampling));
 evalPath = strcat(folderPath,'/eval');
+rankedPath = strcat(folderPath,'/ranked');
 skipExisting = true;
 averagePrecision = [];
 if(isdir(evalPath) && skipExisting)
     warning('We opted for skipping this visual description set as the folder already exists');
     load(strcat(folderPath,'/SVMs'),'SVMs');
+    load(strcat(folderPath,'/centers'),'centers');
     load(strcat(evalPath,'/histogramsEval'),'histogramsEval');
     load(strcat(evalPath,'/classLabelsEval'),'classLabelsEval');
 else
@@ -35,6 +39,9 @@ else
     save(strcat(evalPath,'/classLabelsEval'),'classLabelsEval');
 end
 
+% Make folder for the ranked lists
+[~,~,~] = mkdir(rankedPath);
+
 c = 0;
 for category = categories
     disp(char(category));
@@ -51,6 +58,15 @@ for category = categories
     % descending order
     [Y,I]=sort(predictionMatrix(:,1), 'descend');
     ranking = predictionMatrix(I,:);
+    % Get the ranked list for the current object class
+    rankedList = testDataList(I,:);
+    % Save the list to a file
+    fileID = fopen(char(strcat(rankedPath, '/', categories(c+1),'.txt')),'w');
+    for i=1:size(rankedList,1)
+        fprintf(fileID,'%s\n', rankedList(i,:));
+    end
+    fclose(fileID);
+    
     averagePrecision = [averagePrecision 1/sum(ranking(:,3))*sum(ranking(:,3).*cumsum(ranking(:,3))./(1:size(ranking,1))')];
 
     % Put the probability estimation in a matrix
@@ -58,6 +74,7 @@ for category = categories
     
     c = c + 1;
 end
+
 
 % Mean Average Precision for all classes
 MAP = mean(averagePrecision);
