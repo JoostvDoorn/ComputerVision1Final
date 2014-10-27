@@ -30,9 +30,9 @@ else
         c = c + 1;
     end
     % to save them:
-    [s, mess, messid] = mkdir(folderPath);
-    save(strcat(folderPath,'/histogramsEval'),'histogramsEval');
-    save(strcat(folderPath,'/classLabelsEval'),'classLabelsEval');
+    [s, mess, messid] = mkdir(evalPath);
+    save(strcat(evalPath,'/histogramsEval'),'histogramsEval');
+    save(strcat(evalPath,'/classLabelsEval'),'classLabelsEval');
 end
 
 c = 0;
@@ -75,3 +75,6 @@ disp('Mean Average Precision: ');
 disp(MAP);
 disp('Prediction Accuracy: ');
 disp(accuracy);
+save(strcat(evalPath,'/averagePrecision'),'averagePrecision');
+save(strcat(evalPath,'/MAP'),'MAP');
+save(strcat(evalPath,'/accuracy'),'accuracy');
