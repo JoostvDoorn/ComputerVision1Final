@@ -1,7 +1,9 @@
 # Computer Vision 1 Final project
 
 Joost van Doorn - 10805176
+
 Tran Cong Nguyen - 10867481
+
 Roger Wechsler - 10850007
 
 *University of Amsterdam 2014*
