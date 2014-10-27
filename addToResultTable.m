@@ -10,7 +10,7 @@ function [] = addToResultTable( vocSize, fExtraction, denseSampling, map, kernel
     result = strcat(num2str(vocSize),' & ',fExtraction,' & ',dense,' & ',num2str(map(0))
     ,' & ',map(1),' & ',map(2),' & ',map(3),' & ',mean(map), '\\ '));
     % Open file
-    fileID = fopen(strcat('table',kernel,'.txt','w');
+    fileID = fopen(strcat('results/table',kernel,'.txt','w');
     % Write to file
     fprintf(result);
     % Close file
