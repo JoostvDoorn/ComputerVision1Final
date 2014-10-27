@@ -1,5 +1,5 @@
 categories = { 'airplanes' 'cars' 'faces' 'motorbikes' };
-testData = getData(categories, 'test', 4);
+testData = getData(categories, 'test', 'max');
 histogramsEval = [];
 classLabelsEval = [];
 PredictedEstimates = [];
