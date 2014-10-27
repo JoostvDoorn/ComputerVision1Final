@@ -4,6 +4,11 @@ By Roger Wechsler, Tran Cong Nguyen and Joost van Doorn
 
 The functions expect the data to be in the data/ directory. All batch functions are created to automatically store results in the results/ folder, and to store the intermediate results.
 
+The following two external libraries should be installed andloaded to Matlab's namespace initially:
+- libsvm (http://www.csie.ntu.edu.tw/~cjlin/libsvm/#matlab)
+- VLFeat (http://www.vlfeat.org/install-matlab.html)
+
+
 Single training files are designed to run after eachother for one specific setting, they are split into two files:
 * runTraining.m - Builds the visual vocabulary and trains the SVM.
 * evaluate.m - Tests the vocabulary on the test set.
