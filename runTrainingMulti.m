@@ -5,7 +5,7 @@
 % training parameters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 denseSettings = [ true, false ];
 vocSizes = [ 400, 800, 1600, 2000, 4000 ];
-extractions = { 'grayscaleSift' };
+extractions = { 'grayscaleSift', 'colorSift', 'rgbSift', 'opponentSift', 'hsvSift'};
 categories = { 'airplanes' 'cars' 'faces' 'motorbikes' };
 trainingSize = 40;
 visualVocBuildingSize = 20;
