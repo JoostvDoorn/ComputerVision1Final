@@ -1,4 +1,4 @@
-function [averagePrecision, MAP, accuracy, predictedClassLabels] = evaluation(categories, vocSize, testSize,  fExtraction, denseSampling, centers, SVMs)
+function [averagePrecision, MAP, accuracy] = evaluation(categories, vocSize, testSize,  fExtraction, denseSampling, centers, SVMs)
 % Evaluates a the test set on the SVMs provided.
 % Returns average precision, mean average precision, prediction accuracy.
 

@@ -17,10 +17,10 @@ testSize = 'max'; % number of test samples per class
 [centers, histograms, classLabels] = train(categories, vocSize, trainingSize, visualVocBuildingSize, fExtraction, denseSampling);
 [SVMs] = trainsvm(histograms, classLabels, categories, svmOptions);
 
-createRankedList(categories, vocSize, testSize,  fExtraction, denseSampling, centers, SVMs);
+%createRankedList(categories, vocSize, testSize,  fExtraction, denseSampling, centers, SVMs);
 
 % evaluation phase
-[averagePrecision, MAP, accuracy, predictedClassLabels] = evaluation(categories, vocSize, testSize,  fExtraction, denseSampling, centers, SVMs);
+[averagePrecision, MAP, accuracy] = evaluation(categories, vocSize, testSize,  fExtraction, denseSampling, centers, SVMs);
 
 % The following line outputs a ranked list for each class in
 % results/ranked/ ...
