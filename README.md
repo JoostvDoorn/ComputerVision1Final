@@ -1,3 +1,7 @@
+# Computer Vision 1 Final project
+By Roger Wechsler, Tran Cong Nguyen and Joost van Doorn
+University of Amsterdam 2014
+
 The functions expect the data to be in the data/ directory. All batch functions are created to automatically store results in the results/ folder, and to store the intermediate results.
 
 Single training files are designed to run after eachother for one specific setting, they are split into two files:
