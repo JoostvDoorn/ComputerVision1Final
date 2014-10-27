@@ -2,23 +2,23 @@
 By Roger Wechsler, Tran Cong Nguyen and Joost van Doorn
 *University of Amsterdam 2014*
 
-Dependencies
-************
+**Dependencies**
+
 
 The following two external libraries should be installed and loaded to Matlab's namespace initially:
 - libsvm (http://www.csie.ntu.edu.tw/~cjlin/libsvm/#matlab)
 - VLFeat (http://www.vlfeat.org/install-matlab.html)
 
-Directories
-***********
+**Directories**
+
 
 The functions expect the data to be in the data/ directory. Each category has two directories, one for the training images and one for the test images (e.g. airplaines_test and airplanes_train).
 
 All batch functions are created to automatically store results in the results/ folder, and to store the intermediate results.
 This has the advantage that further training runs will be processed faster as intermediate results will be loaded from external files.
 
-Files
-*****
+**Files**
+
 
 Single training files are designed to run after eachother for one specific setting, they are split into the following files
 * train.m - Builds the visual vocabulary and calculates the visual descriptions for all training images.
