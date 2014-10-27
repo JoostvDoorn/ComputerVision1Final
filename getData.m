@@ -1,5 +1,14 @@
 function [ results ] = getData ( categories, type, max )
-%Obtains the filepaths of the image files from each of the classes.
+    % Obtains the filepaths of the image files from each of the classes.
+    % categories:   The categories for which images need to be extracted.
+    % type:         test or train, to indicate if test or train images need
+    % to be obtained
+    % max:          Indicates the maximum number of images per class, use 'max' for
+    % unlimited images (or leave it out). Function gives a warning if not
+    % enough images are available.
+    % Returns:
+    % results:      A struct with for each category the filenames that need
+    % to be used.
     no_max = nargin < 3 || strcmp(max, 'max');
     filter_files = { '.', '..', 'Thumbs.db', '' };
     results = struct();

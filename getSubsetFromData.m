@@ -1,6 +1,11 @@
 function [ filePaths ] = getSubsetFromData( dataSet, selector )
-%getSubsetFromData Returns a list of filepaths that represents a subset of the
-%dataset
+    %Returns a list of filepaths that represents a subset of the
+    %dataset
+    % dataSet:      The struct with the filepaths
+    % selector:     A selector to get the subset
+    % Returns:
+    % filePaths:    Array with the filepaths selected using the selector
+    % for each class concatenated into one array
     names = fieldnames(dataSet);
     filePaths = [];
     for f = names'
