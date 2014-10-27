@@ -11,7 +11,6 @@ vocSizes = [ 400, 800, 1600, 2000, 4000 ];
 extractions = { 'grayscaleSift', 'colorSift', 'rgbSift', 'opponentSift', 'hsvSift'};
 trainingSize = 'max';
 visualVocBuildingSize = 250;
-svmOptions = strcat({'-t '},num2str(kernel),' -w1 3 -b 1');
 kernels = [0, 1, 2];
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -29,6 +28,7 @@ for denseSampling=denseSettings
                 disp('Training SVM');
                 for kernel = kernels,
                     disp(kernel);
+                    svmOptions = strcat({'-t '},num2str(kernel),' -w1 3 -b 1');
                     [SVMs] = trainsvm(histograms, classLabels, categories, char(svmOptions));
                     % to save them:
                     save(strcat(folderPath,'/SVMs',num2str(kernel)),'SVMs');
