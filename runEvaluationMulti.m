@@ -1,13 +1,13 @@
 % This script trains the SVMs
 vocSizes = [ 400, 800, 1600, 2000, 4000 ];
-extractions = { 'rgbSift' };
+extractions = { 'colorSift' };
 categories = { 'airplanes' 'cars' 'faces' 'motorbikes' };
 denseSampling = false;
 trainingSize = 'max';
 visualVocBuildingSize = 250;
 svmCodes = [0,1,2];
-
-testData = getData(categories, 'test', 2);
+N = 'max';
+testData = getData(categories, 'test', N);
 
 for extraction=extractions,
     for voc=vocSizes,
@@ -23,15 +23,15 @@ for extraction=extractions,
             
             % check if histogramsEval  and classLabelsEval exist
             
-            disp(strcat(folderPath,'/histogramsEval'));
+            disp(strcat(folderPath,'/histogramsEval',num2str(N)));
             
-            if(exist(strcat(folderPath,'/histogramsEval.mat'), 'file') && exist(strcat(folderPath,'/classLabelsEval.mat'), 'file'))
+            if(exist(strcat(folderPath,'/histogramsEval',num2str(N),'.mat'), 'file') && exist(strcat(folderPath,'/classLabelsEval',num2str(N),'.mat'), 'file'))
             
              
                 disp('histograms found.');
 
-                load(strcat(folderPath,'/histogramsEval'));
-                load(strcat(folderPath,'/classLabelsEval'));
+                load(strcat(folderPath,'/histogramsEval',num2str(N)));
+                load(strcat(folderPath,'/classLabelsEval',num2str(N)));
 
             else    
                 
@@ -54,8 +54,8 @@ for extraction=extractions,
                     c = c + 1;
                 end
 
-                save(strcat(folderPath,'/histogramsEval'),'histogramsEval');
-                save(strcat(folderPath,'/classLabelsEval'),'classLabelsEval');
+                save(strcat(folderPath,'/histogramsEval',num2str(N)),'histogramsEval');
+                save(strcat(folderPath,'/classLabelsEval',num2str(N)),'classLabelsEval');
 
             end
             
