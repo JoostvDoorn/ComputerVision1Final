@@ -1,7 +1,7 @@
-function [ averagePrecision] = evaluate(categories, classLabelsEval, histogramsEval, SVMs)
-% This function returns an array of average precisions (per category) for
-% an array of cateogries, an array of test labels and test histograms and
-% for a a struct of SVMs (one per category).
+function [ averagePrecision, MAP, accuracy] = evaluate(categories, classLabelsEval, histogramsEval, SVMs)
+% This function returns an array of average precisions (per category), the mean average precision
+% and the accuracy for an array of cateogries, an array of test labels 
+% and test histograms and for a a struct of SVMs (one per category).
 
 PredictedEstimates = [];
 averagePrecision = [];
