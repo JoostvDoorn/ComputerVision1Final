@@ -1,7 +1,8 @@
 % This script trains the SVMs
 denseSettings = [ true, false ];
 vocSizes = [ 400, 800, 1600, 2000, 4000 ];
-extractions = { 'grayscaleSift','colorSift','rgbSift','opponentSift','hsvSift' };
+extractions = { 'colorSift' };
+%extractions = { 'grayscaleSift','colorSift','rgbSift','opponentSift','hsvSift' };
 for denseSampling=denseSettings
     for extraction=extractions,
         for voc=vocSizes,
@@ -18,16 +19,16 @@ for denseSampling=denseSettings
                 disp('Training SVM');
                 for kernel = 0:2
                     disp(kernel);
-                    svmOptions = strcat('-t ',num2str(kernel),' -w1 3 -b 1');
-                    [SVMs] = trainsvm(histograms, classLabels, categories, svmOptions);
+                    svmOptions = strcat({'-t '},num2str(kernel),' -w1 3 -b 1');
+                    [SVMs] = trainsvm(histograms, classLabels, categories, char(svmOptions));
                     % to save them:
+                    strcat(folderPath,'/SVMs',num2str(kernel))
                     save(strcat(folderPath,'/SVMs',num2str(kernel)),'SVMs');
                 end
             else
                 warning('Data not yet trained');
                 warning(folderPath);
             end
-
 
         end
     end

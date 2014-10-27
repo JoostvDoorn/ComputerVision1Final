@@ -1,11 +1,11 @@
 % This script trains the SVMs
 vocSizes = [ 400, 800, 1600, 2000, 4000 ];
-extractions = { 'rgbSift' };
+extractions = { 'colorSift' };
 categories = { 'airplanes' 'cars' 'faces' 'motorbikes' };
 denseSampling = false;
 trainingSize = 'max';
 visualVocBuildingSize = 250;
-svmCodes = [1,2,3];
+svmCodes = [0,1,2];
 
 testData = getData(categories, 'test', 2);
 
@@ -19,7 +19,7 @@ for extraction=extractions,
         saveLabels = saveHistograms;
         if(isdir(folderPath))
             
-            disp(strcat('Evaluating  ', folderPath));
+            disp(strcat({'Evaluating  '}, folderPath));
             
             % check if histogramsEval  and classLabelsEval exist
             
@@ -28,36 +28,35 @@ for extraction=extractions,
             if(exist(strcat(folderPath,'/histogramsEval.mat'), 'file') && exist(strcat(folderPath,'/classLabelsEval.mat'), 'file'))
             
              
-            disp('histograms found.');
-               
-            load(strcat(folderPath,'/histogramsEval'));
-            load(strcat(folderPath,'/classLabelsEval'));
-                
-            
+                disp('histograms found.');
+
+                load(strcat(folderPath,'/histogramsEval'));
+                load(strcat(folderPath,'/classLabelsEval'));
+
             else    
                 
-            load(strcat(folderPath,'/centers'),'centers');
-            load(strcat(folderPath,'/classLabels'),'classLabels');
-            load(strcat(folderPath,'/histograms'),'histograms');
-            
-            % visual descriptions
-            c = 0;
-            classLabelsEval = [];
-            histogramsEval = [];
-            disp('Get visual descriptions');
-            % Build the visual vocabulary for the test data
-            for category = categories
-                disp(char(category));
-                images = getfield(testData, char(category));
-                visualDescriptions = getVisualDescriptions(images, centers, fExtraction, denseSampling);
-                classLabelsEval = [ classLabelsEval ; repmat( c, [size(visualDescriptions,1), 1] )];
-                histogramsEval = [ histogramsEval ; visualDescriptions ];  
-                c = c + 1;
-            end
-              
-            save(strcat(folderPath,'/histogramsEval'),'histogramsEval');
-            save(strcat(folderPath,'/classLabelsEval'),'classLabelsEval');
-            
+                load(strcat(folderPath,'/centers'),'centers');
+                load(strcat(folderPath,'/classLabels'),'classLabels');
+                load(strcat(folderPath,'/histograms'),'histograms');
+
+                % visual descriptions
+                c = 0;
+                classLabelsEval = [];
+                histogramsEval = [];
+                disp('Get visual descriptions');
+                % Build the visual vocabulary for the test data
+                for category = categories
+                    disp(char(category));
+                    images = getfield(testData, char(category));
+                    visualDescriptions = getVisualDescriptions(images, centers, fExtraction, denseSampling);
+                    classLabelsEval = [ classLabelsEval ; repmat( c, [size(visualDescriptions,1), 1] )];
+                    histogramsEval = [ histogramsEval ; visualDescriptions ];  
+                    c = c + 1;
+                end
+
+                save(strcat(folderPath,'/histogramsEval'),'histogramsEval');
+                save(strcat(folderPath,'/classLabelsEval'),'classLabelsEval');
+
             end
             
             % histograms ready
@@ -68,7 +67,7 @@ for extraction=extractions,
                 
                 if exist(strcat(svmFile, '.mat'), 'file')
                     
-                    disp(strcat('Evaluating SVM file ', svmFile));
+                    disp(strcat({'Evaluating SVM file '}, svmFile));
                 
                     load(svmFile, 'SVMs');
 
