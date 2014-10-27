@@ -1,4 +1,4 @@
-function [ MAP] = evaluate(categories, classLabelsEval, histogramsEval, SVMs)
+function [ averagePrecision] = evaluate(categories, classLabelsEval, histogramsEval, SVMs)
 
 
 PredictedEstimates = [];

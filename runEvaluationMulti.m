@@ -1,6 +1,6 @@
 % This script trains the SVMs
 vocSizes = [ 400, 800, 1600, 2000, 4000 ];
-extractions = { 'colorSift' };
+extractions = { 'rgbSift' };
 categories = { 'airplanes' 'cars' 'faces' 'motorbikes' };
 denseSampling = false;
 trainingSize = 'max';
@@ -71,8 +71,8 @@ for extraction=extractions,
                 
                     load(svmFile, 'SVMs');
 
-                    MAP = evaluate(categories, classLabelsEval, histogramsEval, SVMs);
-                    addToResultTable( vocSize, fExtraction, denseSampling, MAP, num2str(smvCode) );
+                    averagePrecision = evaluate(categories, classLabelsEval, histogramsEval, SVMs);
+                    addToResultTable( vocSize, fExtraction, denseSampling, averagePrecision, svmCode );
                     
                 else
                     warning(strcat('SVM model not found: ', svmFile));
